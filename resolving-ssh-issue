@@ -1,0 +1,51 @@
+#####################################
+ERROR : -
+
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+#####################################
+
+1. Generate an SSH key:
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+
+2. Add the SSH key to the SSH agent:
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+3. Add your SSH key to your GitHub account:
+
+	i. Copy the SSH key to your clipboard:
+
+	cat ~/.ssh/id_ed25519.pub
+
+	ii Copy the output.
+
+	iii Go to GitHub and log in.
+
+	iv Navigate to Settings > SSH and GPG keys > New SSH key.
+
+	v Paste the key into the "Key" field and give it a descriptive title, then click Add SSH key.
+
+4. Test the SSH connection:
+
+ssh -T git@github.com
+
+You should see a message like:
+
+Hi <YOUR NAME>! You've successfully authenticated, but GitHub does not provide shell access.
+
+5. Push your changes to the repository:
+
+git push -u origin master
+
+
+
+
+
+
